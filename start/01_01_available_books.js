@@ -9,9 +9,9 @@ class Book {
 
   get availability() {
     if(this.numCopies === 0) {
-      console.log('out of stock');
+      console.log('out of stock', this.numCopies);
     } else if (this.numCopies < 10) {
-      console.log('low stock');
+      console.log('low stock', this.numCopies);
     } else {
       console.log('in stock', this.numCopies);
     };
@@ -28,9 +28,14 @@ class Book {
     };
   };
 
-  restock(addedCopies) {
+  restock(addedCopies = 1) {
+    if (addedCopies < 0) {
+    console.log('Invalid restocking quantity');
+    return;
+     }
+
     console.log('instock', this.numCopies);
-    this.numCopies += addedCopies
+    this.numCopies += addedCopies;
     console.log('added', addedCopies, 'totalCopies: ', this.numCopies);
   }
 
@@ -41,16 +46,9 @@ const book2 = new Book("To Kill a Mockingbird", "Harper Lee", "978-0-06-112008-4
 const book3 = new Book("1984", "George Orwell", "978-0-452-28423-4", 50);
 
 
-// book1.availability;
-// book2.availability;
-// book3.availability;
-// book1.sell(0);
-// book2.sell(1);
-// book3.sell(100);
-
-// book2.sell(1);
-// book2.sell(1);
-// console.log(book2.numCopies);
-
-book2.restock(5);
-
+book1.availability;
+book1.sell();
+book1.availability;
+book1.restock();
+book1.availability;
+console.log(book1.numCopies);
