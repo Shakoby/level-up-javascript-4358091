@@ -22,3 +22,4 @@ const myNew = new user('Hakob', 2122, 21);
 // console.log(myNew[userName]);
 console.log(myNew.age);
 console.log(myNew.getUserName());
+console.log(myNew.userName);
