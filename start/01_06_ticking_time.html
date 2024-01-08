@@ -12,11 +12,21 @@
   <!-- To run this file right click the file in the navigation bar and select "Open with live server. Then open the developer tools in the browser and head to the console window."-->
 
   <!-- Use this element to render your clock -->
-  <div id="clock"></div>
+
+    <div id="clockp"></div>
 
   <script>
     // Write your code here
-    
+ 
+    function updateTime() {
+      let date = new Date;
+      let currentTime = date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
+      document.querySelector("#clockp").textContent = currentTime;
+
+       setTimeout(updateTime, 1000);
+    }
+
+  updateTime();
   </script>
 </body>
 
