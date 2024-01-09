@@ -12,11 +12,87 @@
   <!-- To run this file right click the file in the navigation bar and select "Open with live server. Then open the developer tools in the browser and head to the console window."-->
 
   <!-- Use this element to generate your friends -->
-  <div id="timeline"></div>
+  <ul id="timeline"></ul>
 
   <script>
     // Write your code here
+
+      async function getUsers() {
+
+        let people = await fetch("https://randomuser.me/api/?results=5");
+        let data = await people.json();
+        console.log(data);
+        
+        const timeline = document.querySelector('#timeline');
+        data.results.forEach(person => {
+          let image = document.createElement('img');
+          image.src = person.picture.medium;
+          timeline.appendChild(image);
+        });
+      }
+      getUsers();
+
+//     async function fetchSome() {
+//         const response = await fetch('https://randomuser.me/api/?results=5');
+//          const friends = await response.json();
+//         return friends;
+//       }
+
+//       fetchSome().then((friends) => {
+//         console.log(friends);
+//       });
     
+
+//       async function fetch404() {
+//           const response = await fetch('https://randomuser.me/api/?results=5');
+
+//           response.ok;     // => false
+//           response.status; // => 404
+
+//           const text = await response.text();
+//           return text;
+//         }
+
+//         fetch404().then(text => {
+//           console.log(text); // => 'Page not found'
+//         });
+ async function fetchSome() {
+    try {
+      const response = await fetch('https://randomuser.me/api/?results=5');
+      const data = await response.json();
+
+        console.log(data);
+
+      // Accessing user details
+      const users = data.results.map((user) => {
+        const { name, dob, gender } = user;
+        return {
+          name: `${name.first} ${name.last}`,
+          // age: new Date().getFullYear() - new Date(dob.date).getFullYear(),
+          // gender,
+        };
+      });
+
+      return users;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error;
+    }
+  }
+
+  fetchSome().then((users) => {
+    console.log(users);
+
+      const userList = document.getElementById('timeline');
+      users.forEach(item => {
+      const listItem = document.createElement('li');
+      listItem.textContent = item.name;
+      userList.appendChild(listItem);
+    });
+
+  });
+
+
   </script>
 </body>
 
