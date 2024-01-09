@@ -12,11 +12,33 @@
   <!-- To run this file right click the file in the navigation bar and select "Open with live server. Then open the developer tools in the browser and head to the console window."-->
 
   <!-- Use this element to generate your menu -->
-  <ul id="combined-menu"></ul>
+  <ul id="combined-menu">
+  </ul>
 
   <script>
     // Write your code here
+    let vendor1 = ['pizza','pasta'];
+    let vendor2 = ['pizza','calzones'];
+    let vendor3 = ['lobster'];
+    let vendor4 = ['calzones'];
 
+    let testSet = new Set();
+
+    function set(arr) {
+      let flatt = arr.flat();
+       flatt.forEach(item => testSet.add(item));
+      return testSet;
+    }
+
+    set([vendor1, vendor2, vendor3, vendor4 ]);
+
+    const menuList = document.getElementById('combined-menu');
+          testSet.forEach(item => {
+            console.log(item);
+            const listItem = document.createElement('li');
+            listItem.textContent = item;
+            menuList.appendChild(listItem);
+          });
   </script>
 </body>
 
