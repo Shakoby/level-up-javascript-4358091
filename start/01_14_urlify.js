@@ -11,8 +11,7 @@ function urlified(str) {
   const remove = /[@.,/#!$%^&*;:{}=!\-_`~()'"]/g;
 
   const removedSpecialChars = str.replace(remove, '');
-  const replacedSpaces = removedSpecialChars.replace(/ /g, '-');
-  const final = replacedSpaces.toLowerCase().replace(/-+$/, '').trim();
+  const final = removedSpecialChars.toLowerCase().trim().replaceAll(" ", "-");
   console.log(final);
 }
 
