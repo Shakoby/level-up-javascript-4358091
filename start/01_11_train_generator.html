@@ -16,6 +16,29 @@
 
   <script>
     // Write your code here
+    function* generator() {
+      yield 'Poughkeepsie'
+      yield 'Newburg'
+      yield 'Peerskill'
+      yield 'Yonkers'
+      yield 'Bronx'
+      yield 'Grand Central'
+    }
+    const genObj = generator();
+
+    function trigger() {
+      const { value, done } = genObj.next();
+      
+      if (done) {
+        console.log('We made it');
+        document.querySelector('#next-stop').disabled = true;
+      } else {
+        console.log(value);
+      }
+    } 
+
+
+      document.querySelector('#next-stop').addEventListener('click', trigger);
 
   </script>
 </body>
